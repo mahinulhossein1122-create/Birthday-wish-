@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Cards 🎂</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Pangolin&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #FFE5E5 0%, #FFD5E5 50%, #FFF0F5 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Floating hearts background */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.4;
+            animation: floatHeart linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: bounceIn 1s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .header-subtitle-small {
+            font-size: 16px;
+            color: #999;
+            font-weight: 400;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .header-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #FF1493;
+            text-shadow: 2px 2px 0 rgba(255, 182, 193, 0.3);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .header-tap-hint {
+            font-size: 14px;
+            color: #C53A6E;
+            font-weight: 500;
+        }
+
+        /* Cards container */
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Single card wrapper */
+        .card-wrapper {
+            perspective: 1000px;
+            animation: slideIn 0.6s ease-out backwards;
+        }
+
+        .card-wrapper:nth-child(1) { animation-delay: 0.2s; }
+        .card-wrapper:nth-child(2) { animation-delay: 0.4s; }
+        .card-wrapper:nth-child(3) { animation-delay: 0.6s; }
+        .card-wrapper:nth-child(4) { animation-delay: 0.8s; }
+        .card-wrapper:nth-child(5) { animation-delay: 1s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Flip card */
+        .flip-card {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .flip-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Card face (front & back) */
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Front face */
+        .card-front {
+            background: linear-gradient(135deg, #FFB6D9, #FFD1DC);
+        }
+
+        .card-front.card-1 { background: linear-gradient(135deg, #FFB6D9, #FFC0E3); }
+        .card-front.card-2 { background: linear-gradient(135deg, #B4F8C8, #A0E7E5); }
+        .card-front.card-3 { background: linear-gradient(135deg, #E6C9F0, #D4A5E8); }
+        .card-front.card-4 { background: linear-gradient(135deg, #FFDAB9, #FFE4B5); }
+        .card-front.card-5 { background: linear-gradient(135deg, #FFE5E5, #FFD5E5); }
+
+        .card-illustration {
+            width: 140px;
+            height: 140px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+        }
+
+        .card-hint {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Back face */
+        .card-back {
+            background: white;
+            transform: rotateY(180deg);
+            padding: 30px;
+        }
+
+        .card-message {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 19px;
+            color: #333;
+            text-align: center;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .flip-back-btn {
+            background: linear-gradient(135deg, #FFB6D9, #FF69B4);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .flip-back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        .flip-back-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Next page button */
+        .next-page-container {
+            text-align: center;
+            margin-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .next-page-btn {
+            background: linear-gradient(135deg, #FF6B9D, #FFA07A);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+            transition: all 0.3s ease;
+            font-family: 'Fredoka', sans-serif;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 15px 40px rgba(255, 107, 157, 0.8);
+                transform: scale(1.05);
+            }
+        }
+
+        .next-page-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.7);
+        }
+
+        .next-page-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            font-size: 20px;
+            animation: sparkleAnim 2s ease-in-out infinite;
+        }
+
+        .sparkle-1 {
+            top: 10px;
+            left: 10px;
+            animation-delay: 0s;
+        }
+
+        .sparkle-2 {
+            top: 10px;
+            right: 10px;
+            animation-delay: 0.5s;
+        }
+
+        .sparkle-3 {
+            bottom: 10px;
+            left: 10px;
+            animation-delay: 1s;
+        }
+
+        .sparkle-4 {
+            bottom: 10px;
+            right: 10px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes sparkleAnim {
+            0%, 100% {
+                transform: scale(0.8) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 36px;
+            }
+
+            .header-subtitle {
+                font-size: 16px;
+            }
+
+            .flip-card {
+                height: 220px;
+            }
+
+            .card-illustration {
+                width: 110px;
+                height: 110px;
+            }
+
+            .card-message {
+                font-size: 18px;
+            }
+
+            .flip-back-btn {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-subtitle-small">just saying...</div>
+            <div class="header-title">Little Things I Messed Up<br>(But Care About)</div>
+            <div class="header-tap-hint">Tap to flip</div>
+        </div>
+
+        <!-- Cards -->
+        <div class="cards-container">
+            <!-- Card 1 -->
+            <div class="card-wrapper">
+                <div class="flip-card" onclick="flipCard(this)">
+                    <!-- Front -->
+                    <div class="card-face card-front card-1">
+                        <span class="sparkle sparkle-1">✨</span>
+                        <span class="sparkle sparkle-2">✨</span>
+                        <span class="sparkle sparkle-3">✨</span>
+                        <span class="sparkle sparkle-4">✨</span>
+                        
+                        <svg class="card-illustration" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Kawaii cat -->
+                            <ellipse cx="100" cy="120" rx="70" ry="60" fill="#FFE5E5"/>
+                            <circle cx="100" cy="80" r="55" fill="white"/>
+                            <path d="M 60,60 Q 50,30 55,50" fill="white" stroke="#FFB6D9" stroke-width="3"/>
+                            <path d="M 140,60 Q 150,30 145,50" fill="white" stroke="#FFB6D9" stroke-width="3"/>
+                            <circle cx="80" cy="75" r="8" fill="#333"/>
+                            <circle cx="120" cy="75" r="8" fill="#333"/>
+                            <ellipse cx="100" cy="90" rx="6" ry="8" fill="#FF69B4"/>
+                            <path d="M 90,95 Q 100,105 110,95" stroke="#FF69B4" stroke-width="3" fill="none"/>
+                            <circle cx="65" cy="80" r="12" fill="#FFB6D9" opacity="0.6"/>
+                            <circle cx="135" cy="80" r="12" fill="#FFB6D9" opacity="0.6"/>
+                            <path d="M 50,80 L 40,82" stroke="#333" stroke-width="2"/>
+                            <path d="M 50,85 L 40,87" stroke="#333" stroke-width="2"/>
+                            <path d="M 150,80 L 160,82" stroke="#333" stroke-width="2"/>
+                            <path d="M 150,85 L 160,87" stroke="#333" stroke-width="2"/>
+                        </svg>
+                        
+                        <div class="card-hint">Tap to reveal! 💕</div>
+                    </div>
+                    
+                    <!-- Back -->
+                    <div class="card-face card-back">
+                        <div class="card-message">
+                            Happy Birthday to the girl who makes every day feel like a celebration! 🎉💕
+                        </div>
+                        <button class="flip-back-btn" onclick="event.stopPropagation(); flipCard(this.closest('.flip-card'))">
+                            Tap to flip back
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card-wrapper">
+                <div class="flip-card" onclick="flipCard(this)">
+                    <!-- Front -->
+                    <div class="card-face card-front card-2">
+                        <span class="sparkle sparkle-1">⭐</span>
+                        <span class="sparkle sparkle-2">⭐</span>
+                        <span class="sparkle sparkle-3">⭐</span>
+                        <span class="sparkle sparkle-4">⭐</span>
+                        
+                        <svg class="card-illustration" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Kawaii star -->
+                            <path d="M 100,20 L 115,70 L 170,75 L 125,110 L 140,165 L 100,135 L 60,165 L 75,110 L 30,75 L 85,70 Z" fill="#FFE082" stroke="#FFD700" stroke-width="3"/>
+                            <circle cx="85" cy="80" r="8" fill="#333"/>
+                            <circle cx="115" cy="80" r="8" fill="#333"/>
+                            <path d="M 90,95 Q 100,105 110,95" stroke="#FF69B4" stroke-width="3" fill="none"/>
+                            <circle cx="70" cy="85" r="10" fill="#FFB6D9" opacity="0.6"/>
+                            <circle cx="130" cy="85" r="10" fill="#FFB6D9" opacity="0.6"/>
+                        </svg>
+                        
+                        <div class="card-hint">Click me! 🌟</div>
+                    </div>
+                    
+                    <!-- Back -->
+                    <div class="card-face card-back">
+                        <div class="card-message">
+                            তুমি না হাসলে পৃথিবী টা ঠিক মতো run করে না, মনে হয় system error 💻💕
+                        </div>
+                        <button class="flip-back-btn" onclick="event.stopPropagation(); flipCard(this.closest('.flip-card'))">
+                            Tap to flip back
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card-wrapper">
+                <div class="flip-card" onclick="flipCard(this)">
+                    <!-- Front -->
+                    <div class="card-face card-front card-3">
+                        <span class="sparkle sparkle-1">💜</span>
+                        <span class="sparkle sparkle-2">💜</span>
+                        <span class="sparkle sparkle-3">💜</span>
+                        <span class="sparkle sparkle-4">💜</span>
+                        
+                        <svg class="card-illustration" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Kawaii cake -->
+                            <rect x="60" y="90" width="80" height="60" rx="5" fill="#FF69B4"/>
+                            <rect x="60" y="90" width="80" height="15" fill="#FFB6D9"/>
+                            <path d="M 60,90 Q 65,80 70,90 Q 75,80 80,90 Q 85,80 90,90 Q 95,80 100,90 Q 105,80 110,90 Q 115,80 120,90 Q 125,80 130,90 Q 135,80 140,90" fill="white"/>
+                            <rect x="95" y="50" width="10" height="40" fill="#FFE082"/>
+                            <ellipse cx="100" cy="45" rx="8" ry="12" fill="#FFD700"/>
+                            <path d="M 100,30 L 95,45 L 105,45 Z" fill="#FFA500"/>
+                            <circle cx="75" cy="100" r="4" fill="white"/>
+                            <circle cx="100" cy="105" r="4" fill="white"/>
+                            <circle cx="125" cy="100" r="4" fill="white"/>
+                            <circle cx="85" cy="120" r="4" fill="white"/>
+                            <circle cx="115" cy="120" r="4" fill="white"/>
+                        </svg>
+                        
+                        <div class="card-hint">Open me! 🎂</div>
+                    </div>
+                    
+                    <!-- Back -->
+                    <div class="card-face card-back">
+                        <div class="card-message">
+                            সবচেয়ে কষ্টের ব্যাপার হলো, তোমাকে অনেক কিছু বলতে চাই, কিন্তু শব্দগুলো গলার কাছে এসেই থেমে যায়। 💔
+                        </div>
+                        <button class="flip-back-btn" onclick="event.stopPropagation(); flipCard(this.closest('.flip-card'))">
+                            Tap to flip back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next page button -->
+        <div class="next-page-container">
+            <button class="next-page-btn" onclick="goToNextPage()">
+                Continue to Next →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['💕', '💖', '💗', '💓', '💝'];
+            
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-float';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        createFloatingHearts();
+
+        // Flip card function
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        // Next page navigation
+        function goToNextPage() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => {
+                window.location.href = 'next.html';
+            }, 500);
+        }
+    </script>
+</body>
+</html>

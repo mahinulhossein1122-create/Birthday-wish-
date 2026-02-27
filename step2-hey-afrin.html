@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey Afrin 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #FFF5E4 0%, #FFE5D9 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Floating petals */
+        .petal {
+            position: fixed;
+            width: 20px;
+            height: 30px;
+            background: rgba(255, 182, 193, 0.6);
+            border-radius: 50% 0 50% 0;
+            animation: float 8s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+        .container {
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Top section */
+        .top-section {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .sun {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: #F4D03F;
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(244, 208, 63, 0.6);
+            z-index: 1;
+        }
+
+        .welcome-text {
+            font-family: 'Caveat', cursive;
+            font-size: 36px;
+            color: #E07A5F;
+            text-align: center;
+            padding-top: 60px;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Main title */
+        .main-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0 20px;
+        }
+
+        .title-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 60px;
+            font-weight: 700;
+            font-style: italic;
+            color: #D04E3C;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.08);
+        }
+
+        .hearts {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .heart {
+            font-size: 32px;
+            animation: heartBeat 1.5s infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Message box - উপরে উঠানো */
+        .message-box {
+            background: #D4E9D7;
+            border: 4px solid #C9D5C4;
+            border-radius: 30px;
+            padding: 50px 40px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Three dots */
+        .dots {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+        }
+
+        .dot-1 {
+            background: #E07A5F;
+        }
+
+        .dot-2 {
+            background: #F4D03F;
+        }
+
+        .dot-3 {
+            background: #81C784;
+        }
+
+        /* Message text */
+        .message-text {
+            font-size: 26px;
+            color: #2C3E50;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        /* Tap below text */
+        .tap-text {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            color: #E07A5F;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Open button with BLINK animation */
+        .open-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: #E07A5F;
+            color: white;
+            border: none;
+            padding: 22px 60px;
+            font-size: 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 0 auto;
+            box-shadow: 0 8px 25px rgba(224, 122, 95, 0.4);
+            transition: transform 0.2s;
+            animation: blink 1.5s infinite;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(0.95);
+            }
+        }
+
+        .open-button:hover {
+            transform: scale(1.05);
+        }
+
+        .open-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Decorative circle */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .circle-1 {
+            width: 100px;
+            height: 100px;
+            background: #F4D03F;
+            top: 100px;
+            right: -30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title-text {
+                font-size: 50px;
+            }
+
+            .heart {
+                font-size: 28px;
+            }
+
+            .welcome-text {
+                font-size: 30px;
+            }
+
+            .message-text {
+                font-size: 22px;
+            }
+
+            .tap-text {
+                font-size: 28px;
+            }
+
+            .open-button {
+                font-size: 26px;
+                padding: 20px 50px;
+            }
+
+            .message-box {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title-text {
+                font-size: 42px;
+            }
+
+            .heart {
+                font-size: 24px;
+            }
+
+            .welcome-text {
+                font-size: 26px;
+            }
+
+            .message-text {
+                font-size: 20px;
+            }
+
+            .tap-text {
+                font-size: 24px;
+            }
+
+            .open-button {
+                font-size: 24px;
+                padding: 18px 40px;
+            }
+
+            .message-box {
+                padding: 35px 25px;
+            }
+
+            .sun {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating petals -->
+    <div id="petals"></div>
+
+    <!-- Main content -->
+    <div class="container">
+        <!-- Top section -->
+        <div class="top-section">
+            <div class="sun"></div>
+            <div class="welcome-text">welcome to my little thought...</div>
+        </div>
+
+        <!-- Main title with hearts -->
+        <div class="main-title">
+            <span class="title-text">Hey Afrin</span>
+            <div class="hearts">
+                <span class="heart">💕</span>
+                <span class="heart" style="animation-delay: 0.3s;">💖</span>
+            </div>
+        </div>
+
+        <!-- Message box -->
+        <div class="message-box">
+            <!-- Three dots -->
+            <div class="dots">
+                <div class="dot dot-1"></div>
+                <div class="dot dot-2"></div>
+                <div class="dot dot-3"></div>
+            </div>
+
+            <!-- Message -->
+            <div class="message-text">
+                I wanted to do a tiny something<br>
+                because you mean a lot to me.
+            </div>
+
+            <!-- Tap below text -->
+            <div class="tap-text">Tap below, okay? ✨</div>
+
+            <!-- Open button with BLINK -->
+            <button class="open-button" onclick="openNext()">
+                Open This 💝 <span style="font-size: 36px;">→</span>
+            </button>
+        </div>
+
+        <!-- Decorative circle -->
+        <div class="circle circle-1"></div>
+    </div>
+
+    <script>
+        // Create floating petals
+        function createPetals() {
+            const container = document.getElementById('petals');
+            for (let i = 0; i < 15; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(petal);
+            }
+        }
+
+        createPetals();
+
+        // Button click handler
+        function openNext() {
+            alert('🎂 STEP 3: Cake Cutting Page!\n\nNext page coming soon!');
+            // Here navigate to STEP 3
+        }
+    </script>
+</body>
+</html>

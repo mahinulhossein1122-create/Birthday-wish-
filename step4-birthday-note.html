@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Birthday Note 💌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #FFE5D9 0%, #FFF5E4 50%, #FFE5D9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background floating balloons */
+        .bg-balloon {
+            position: fixed;
+            font-size: 60px;
+            opacity: 0.3;
+            animation: floatUp linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Container */
+        .letter-container {
+            max-width: 750px;
+            width: 100%;
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFECB3 100%);
+            border: 8px solid #E5C899;
+            border-radius: 30px;
+            padding: 35px 35px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Content */
+        .letter-content {
+            position: relative;
+        }
+
+        /* Top header */
+        .letter-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid rgba(224, 122, 95, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-text {
+            font-family: 'Caveat', cursive;
+            font-size: 34px;
+            color: #D04E3C;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        /* Title with background decoration */
+        .title-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .title-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(255, 182, 217, 0.3), transparent);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 50px;
+            font-weight: 700;
+            font-style: italic;
+            color: #D04E3C;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Letter body - Better padding and spacing */
+        .letter-body {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 40px 35px;
+            border-radius: 18px;
+            border: 3px solid #E5C899;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dotted pattern background */
+        .letter-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(224, 122, 95, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .greeting {
+            font-family: 'Caveat', cursive;
+            font-size: 38px;
+            color: #D04E3C;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Elegant, readable font - Libre Baskerville */
+        .letter-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 19px;
+            color: #4a3f35;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+            margin-bottom: 18px;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Birthday wish section with interactive balloons */
+        .birthday-wish {
+            text-align: center;
+            margin: 30px 0 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, #FFE5D9, #FFD1DC);
+            border-radius: 20px;
+            border: 3px solid #E07A5F;
+            position: relative;
+            overflow: hidden;
+            min-height: 150px;
+        }
+
+        /* Interactive balloon */
+        .wish-balloon {
+            position: absolute;
+            font-size: 35px;
+            cursor: pointer;
+            animation: balloonRise linear;
+            transition: transform 0.1s;
+            z-index: 1;
+        }
+
+        .wish-balloon:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes balloonRise {
+            from {
+                bottom: -50px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            to {
+                bottom: 180px;
+                opacity: 0;
+            }
+        }
+
+        /* Pop effect */
+        .popped {
+            animation: pop 0.3s ease-out forwards !important;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        .birthday-wish-text {
+            font-family: 'Caveat', cursive;
+            font-size: 44px;
+            color: #D04E3C;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Signature */
+        .signature {
+            font-family: 'Caveat', cursive;
+            font-size: 26px;
+            color: #6B4423;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Button with BLINK animation */
+        .continue-button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 20px 70px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #8B4C39;
+            border: 3px solid #FF8C00;
+            border-radius: 50px;
+            font-size: 32px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.5);
+            transition: transform 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            animation: buttonBlink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes buttonBlink {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(0.97);
+            }
+        }
+
+        .continue-button:hover {
+            transform: translateY(-5px) scale(1);
+            animation: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .letter-container {
+                padding: 30px 25px;
+            }
+
+            .header-text {
+                font-size: 28px;
+            }
+
+            .title {
+                font-size: 42px;
+            }
+
+            .letter-body {
+                padding: 35px 28px;
+            }
+
+            .greeting {
+                font-size: 34px;
+            }
+
+            .letter-text {
+                font-size: 18px;
+                margin-bottom: 16px;
+                letter-spacing: 0.2px;
+            }
+
+            .birthday-wish {
+                padding: 20px;
+                margin: 25px 0 18px;
+            }
+
+            .birthday-wish-text {
+                font-size: 38px;
+            }
+
+            .signature {
+                font-size: 23px;
+            }
+
+            .continue-button {
+                font-size: 28px;
+                padding: 18px 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .letter-container {
+                padding: 25px 20px;
+            }
+
+            .header-text {
+                font-size: 24px;
+            }
+
+            .title {
+                font-size: 36px;
+            }
+
+            .letter-body {
+                padding: 32px 24px;
+            }
+
+            .greeting {
+                font-size: 30px;
+                margin-bottom: 22px;
+            }
+
+            .letter-text {
+                font-size: 17px;
+                margin-bottom: 15px;
+                letter-spacing: 0.2px;
+                line-height: 1.9;
+            }
+
+            .birthday-wish {
+                padding: 18px;
+                margin: 22px 0 16px;
+            }
+
+            .birthday-wish-text {
+                font-size: 34px;
+            }
+
+            .signature {
+                font-size: 21px;
+                margin-top: 18px;
+            }
+
+            .continue-button {
+                font-size: 26px;
+                padding: 16px 50px;
+                margin-top: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background floating balloons -->
+    <div id="bgBalloons"></div>
+
+    <div class="letter-container">
+        <!-- Letter content -->
+        <div class="letter-content">
+            <!-- Header -->
+            <div class="letter-header">
+                <div class="header-text">For The One Whose Smile<br>Changes My Mood</div>
+                <div class="title-wrapper">
+                    <div class="title-bg"></div>
+                    <div class="title">A Birthday Note 💌</div>
+                </div>
+            </div>
+
+            <!-- Letter body -->
+            <div class="letter-body">
+                <div class="greeting">Hey Afrin 🎀</div>
+
+                <div class="letter-text">
+                    Out of all the days in the year, today feels different.
+                </div>
+
+                <div class="letter-text">
+                    Because today is the day someone was born... who doesn't even realize how much light she carries.
+                </div>
+
+                <div class="letter-text">
+                    Your smile — it's not just cute. It's the kind that quietly fixes bad days without trying.
+                </div>
+
+                <div class="letter-text">
+                    And I don't think you understand how rare that is.
+                </div>
+
+                <div class="letter-text">
+                    I'm not here to write the longest birthday wish.
+                </div>
+
+                <div class="letter-text">
+                    I just wanted to say something real.
+                </div>
+
+                <div class="letter-text">
+                    I hope this year gives you confidence when you doubt yourself, peace when things get loud, and happiness that doesn't depend on anyone.
+                </div>
+
+                <div class="letter-text">
+                    And if life allows...
+                </div>
+
+                <div class="letter-text">
+                    I hope I get to stand somewhere close to that happiness too.
+                </div>
+
+                <!-- Birthday wish with interactive rising balloons -->
+                <div class="birthday-wish" id="birthdayWish">
+                    <div class="birthday-wish-text">Happy Birthday. 🎂✨</div>
+                </div>
+
+                <!-- Signature -->
+                <div class="signature">
+                    — Someone Who Notices You<br>
+                    More Than You Think ✨
+                </div>
+            </div>
+
+            <!-- Continue button with BLINK -->
+            <button class="continue-button" onclick="continueNext()">
+                Continue 💕
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Create background floating balloons
+        function createBgBalloons() {
+            const container = document.getElementById('bgBalloons');
+            const balloons = ['🎈', '🎈', '🎈', '🎈', '🎈'];
+            
+            for (let i = 0; i < 5; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'bg-balloon';
+                balloon.textContent = balloons[i];
+                balloon.style.left = (i * 20 + 10) + '%';
+                balloon.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                balloon.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(balloon);
+            }
+        }
+
+        createBgBalloons();
+
+        // Create rising balloons in birthday wish box
+        function createWishBalloons() {
+            const wishBox = document.getElementById('birthdayWish');
+            const colors = ['🎈', '🎈', '🎈', '🎈', '🎈'];
+            
+            setInterval(() => {
+                const balloon = document.createElement('div');
+                balloon.className = 'wish-balloon';
+                balloon.textContent = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = Math.random() * 80 + 10 + '%';
+                balloon.style.animationDuration = Math.random() * 3 + 4 + 's';
+                
+                // Pop balloon on click
+                balloon.addEventListener('click', function() {
+                    this.classList.add('popped');
+                    setTimeout(() => this.remove(), 300);
+                });
+                
+                wishBox.appendChild(balloon);
+                
+                // Remove balloon after animation
+                setTimeout(() => {
+                    if (balloon.parentNode) {
+                        balloon.remove();
+                    }
+                }, 7000);
+            }, 1000); // New balloon every second
+        }
+
+        createWishBalloons();
+
+        // Continue button
+        function continueNext() {
+            alert('💕 Beautiful message sent!\n\nReady for the next step?');
+            // Navigate to next page
+        }
+    </script>
+</body>
+</html>

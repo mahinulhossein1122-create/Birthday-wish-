@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Love Letter 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Kalam', cursive;
+            background: linear-gradient(135deg, #FFF5E4 0%, #FFE5D9 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating petals */
+        .floating-petals {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .petal {
+            position: absolute;
+            width: 15px;
+            height: 20px;
+            background: rgba(255, 182, 193, 0.6);
+            border-radius: 50% 0 50% 0;
+            animation: petalFall linear infinite;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Top header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            color: #E07A5F;
+            margin-bottom: 10px;
+        }
+
+        .header-title {
+            font-family: 'Caveat', cursive;
+            font-size: 56px;
+            font-weight: 700;
+            color: #D04E3C;
+            font-style: italic;
+        }
+
+        /* Letter card */
+        .letter-card {
+            background: linear-gradient(135deg, #FFB6D9 0%, #FFC0E3 100%);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            animation: scaleIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Letter header */
+        .letter-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .envelope-icon {
+            width: 60px;
+            height: 60px;
+            background: #D04E3C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(208, 78, 60, 0.4);
+        }
+
+        .letter-title {
+            font-family: 'Caveat', cursive;
+            font-size: 42px;
+            font-weight: 700;
+            color: #D04E3C;
+            font-style: italic;
+        }
+
+        /* Letter content */
+        .letter-content {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 35px 30px;
+            margin-bottom: 25px;
+            max-height: 450px;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom scrollbar */
+        .letter-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .letter-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .letter-content::-webkit-scrollbar-thumb {
+            background: #FFB6D9;
+            border-radius: 10px;
+        }
+
+        .greeting {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            color: #D04E3C;
+            margin-bottom: 20px;
+        }
+
+        .letter-text {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Buttons container */
+        .buttons-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .response-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Kalam', cursive;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #D04E3C, #FF6B6B);
+            color: white;
+        }
+
+        .yes-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(208, 78, 60, 0.4);
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #95A5A6, #B0BEC5);
+            color: white;
+        }
+
+        .no-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(149, 165, 166, 0.4);
+        }
+
+        /* Response pages */
+        .response-page {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .response-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .response-card {
+            background: linear-gradient(135deg, #FFE5D9, #FFD1DC);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .response-emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .response-message {
+            font-size: 22px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #FF6B9D, #FFA07A);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Kalam', cursive;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header-subtitle {
+                font-size: 26px;
+            }
+
+            .header-title {
+                font-size: 44px;
+            }
+
+            .letter-card {
+                padding: 30px 25px;
+            }
+
+            .envelope-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+
+            .letter-title {
+                font-size: 34px;
+            }
+
+            .letter-content {
+                padding: 28px 22px;
+                max-height: 400px;
+            }
+
+            .greeting {
+                font-size: 28px;
+            }
+
+            .letter-text {
+                font-size: 16px;
+            }
+
+            .response-btn {
+                font-size: 20px;
+                padding: 16px 35px;
+            }
+
+            .response-card {
+                padding: 40px 30px;
+            }
+
+            .response-emoji {
+                font-size: 60px;
+            }
+
+            .response-message {
+                font-size: 19px;
+            }
+
+            .restart-btn {
+                font-size: 20px;
+                padding: 16px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating petals -->
+    <div class="floating-petals" id="floatingPetals"></div>
+
+    <div class="container">
+        <!-- Main letter page -->
+        <div id="letterPage">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-subtitle">the grand finale...</div>
+                <div class="header-title">One Last Thing</div>
+            </div>
+
+            <!-- Letter card -->
+            <div class="letter-card">
+                <div class="letter-header">
+                    <div class="envelope-icon">✉️</div>
+                    <div class="letter-title">Final Love Letter</div>
+                </div>
+
+                <div class="letter-content">
+                    <div class="greeting">Hey Afrin,</div>
+
+                    <div class="letter-text">
+                        আজ এই কথাগুলো লিখতে বসে বুঝলাম, কিছু অনুভূতি আর চুপ করে রাখা যায় না।
+                    </div>
+
+                    <div class="letter-text">
+                        কিছু মানুষ হঠাৎ করেই জীবনে আসে, তারপর অদ্ভুতভাবে থেকে যায়।
+                    </div>
+
+                    <div class="letter-text">
+                        তোমার সাথে প্রথম কথা বলার দিনটা হয়তো সাধারণ ছিল, কিন্তু সেই সাধারণ দিনটাই ধীরে ধীরে আমার কাছে বিশেষ হয়ে গেছে।
+                    </div>
+
+                    <div class="letter-text">
+                        কথার পর কথা, ছোট ছোট মেসেজ, হাসির মাঝখানে হালকা মন খারাপের মুহূর্ত— সব মিলিয়ে তুমি শুধু একজন মানুষ না, একটা অভ্যাস হয়ে গেছো।
+                    </div>
+
+                    <div class="letter-text">
+                        আমি জানি না কখন থেকে তোমার হাসিটা আমার দিনের অংশ হয়ে গেল, কখন থেকে তোমার চুপ করে থাকা আমাকে ভাবায়। শুধু এটুকু জানি, তোমাকে আলাদা করে দেখি।
+                    </div>
+
+                    <div class="letter-text">
+                        আমি তোমাকে কোনো প্রতিশ্রুতির চাপ দিতে চাই না, কোনো তাড়াহুড়োও করতে চাই না।
+                    </div>
+
+                    <div class="letter-text">
+                        আমি শুধু সত্যিটা বলতে চাই— আমি তোমাকে পছন্দ করি, গভীরভাবে।
+                    </div>
+
+                    <div class="letter-text">
+                        তোমার সাথে কথা বলা আমার ভালো লাগে, তোমার উপস্থিতি আমার মনে শান্তি আনে।
+                    </div>
+
+                    <div class="letter-text">
+                        এটা হয়তো প্রেমের শুরু, হয়তো আরও বড় কিছুর সম্ভাবনা।
+                    </div>
+
+                    <div class="letter-text">
+                        আমি জানি না ভবিষ্যৎ কী লিখে রেখেছে, কিন্তু আমি চাই সেই ভবিষ্যতের পথে আমরা একসাথে হাঁটার সুযোগটা অন্তত ভাবি।
+                    </div>
+
+                    <div class="letter-text">
+                        তাই আজ খুব সরল একটা প্রশ্ন করছি—
+                    </div>
+
+                    <div class="letter-text" style="font-weight: 700; color: #D04E3C; font-size: 20px;">
+                        তুমি কি আমার হাতটা ধরবে?<br>
+                        আমরা কি একসাথে এই পথটা শুরু করবো?
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="buttons-container">
+                    <button class="response-btn yes-btn" onclick="showYesResponse()">
+                        Yes 💕
+                    </button>
+                    <button class="response-btn no-btn" onclick="showNoResponse()">
+                        No 🌸
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yes response page -->
+        <div id="yesPage" class="response-page">
+            <div class="response-card">
+                <div class="response-emoji">💛</div>
+                <div class="response-message">
+                    এই মুহূর্তটা হয়তো আমার জীবনের সবচেয়ে বিশেষ মুহূর্ত…<br><br>
+                    মনে হচ্ছে সবকিছু কিছুক্ষণের জন্য থেমে গেছে। 💛
+                </div>
+                <button class="restart-btn" onclick="restartJourney()">
+                    Restart 🔄
+                </button>
+            </div>
+        </div>
+
+        <!-- No response page -->
+        <div id="noPage" class="response-page">
+            <div class="response-card">
+                <div class="response-emoji">🌸</div>
+                <div class="response-message">
+                    ঠিক আছে, আমি তোমার সিদ্ধান্তকে পুরো শ্রদ্ধা করি।<br><br>
+                    তোমার খুশি আমার জন্য সবসময় গুরুত্বপূর্ণ। 🌸<br><br>
+                    আমাদের সম্পর্ক যতটা সম্ভব সুন্দর থাকবে, এমনটাই আমি চাই।
+                </div>
+                <button class="restart-btn" onclick="restartJourney()">
+                    Restart 🔄
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating petals
+        function createPetals() {
+            const container = document.getElementById('floatingPetals');
+            for (let i = 0; i < 20; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(petal);
+            }
+        }
+
+        createPetals();
+
+        // Show Yes response
+        function showYesResponse() {
+            document.getElementById('letterPage').style.display = 'none';
+            document.getElementById('yesPage').classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show No response
+        function showNoResponse() {
+            document.getElementById('letterPage').style.display = 'none';
+            document.getElementById('noPage').classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Restart journey
+        function restartJourney() {
+            // Fade out
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-out';
+            
+            setTimeout(() => {
+                // Reload to first page
+                window.location.href = 'index.html'; // Change to your first page
+            }, 500);
+        }
+    </script>
+</body>
+</html>

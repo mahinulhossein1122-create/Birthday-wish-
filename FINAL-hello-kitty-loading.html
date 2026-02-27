@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Afrin 🎂</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            background: linear-gradient(180deg, #FFF5E4 0%, #FFE5D9 50%, #FFD1DC 100%);
+        }
+
+        /* Clouds */
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 100px;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 100px;
+        }
+
+        .cloud-1 {
+            width: 100px;
+            height: 40px;
+            top: 20%;
+            left: 15%;
+        }
+
+        .cloud-1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 15px;
+        }
+
+        .cloud-1::after {
+            width: 60px;
+            height: 40px;
+            top: -20px;
+            right: 10px;
+        }
+
+        .cloud-2 {
+            width: 120px;
+            height: 50px;
+            top: 50%;
+            right: 20%;
+        }
+
+        .cloud-2::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 20px;
+        }
+
+        .cloud-2::after {
+            width: 70px;
+            height: 50px;
+            top: -25px;
+            right: 15px;
+        }
+
+        .cloud-3 {
+            width: 90px;
+            height: 35px;
+            bottom: 30%;
+            left: 10%;
+        }
+
+        .cloud-3::before {
+            width: 45px;
+            height: 45px;
+            top: -22px;
+            left: 12px;
+        }
+
+        .cloud-3::after {
+            width: 55px;
+            height: 35px;
+            top: -18px;
+            right: 8px;
+        }
+
+        .cloud-4 {
+            width: 80px;
+            height: 30px;
+            bottom: 15%;
+            right: 25%;
+        }
+
+        .cloud-4::before {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            left: 10px;
+        }
+
+        .cloud-4::after {
+            width: 50px;
+            height: 30px;
+            top: -15px;
+            right: 5px;
+        }
+
+        /* Hello Kitty Airplane - Gap কমানো */
+        .airplane {
+            position: absolute;
+            top: 35%;
+            left: -250px;
+            width: 200px;
+            animation: flyAcross 4s ease-in-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes flyAcross {
+            0% {
+                left: -250px;
+            }
+            100% {
+                left: 110%;
+            }
+        }
+
+        /* Loading Text - থেকে যাবে */
+        .loading-text-container {
+            position: absolute;
+            top: 58%;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            animation: fadeInText 1s ease-out 2s forwards;
+            z-index: 5;
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #C85A54;
+            text-align: center;
+            white-space: nowrap;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .airplane {
+                width: 170px;
+            }
+
+            .loading-text {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .airplane {
+                width: 140px;
+            }
+
+            .loading-text {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Clouds -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+
+    <!-- Hello Kitty Airplane -->
+    <div class="airplane">
+        <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
+            <!-- Main airplane body (pink) -->
+            <ellipse cx="110" cy="70" rx="85" ry="38" fill="#FF69B4" stroke="#8B4C4C" stroke-width="3"/>
+            
+            <!-- Windows (blue circles) -->
+            <circle cx="50" cy="65" r="7" fill="#87CEEB" stroke="#8B4C4C" stroke-width="2"/>
+            <circle cx="68" cy="65" r="7" fill="#87CEEB" stroke="#8B4C4C" stroke-width="2"/>
+            <circle cx="86" cy="65" r="7" fill="#87CEEB" stroke="#8B4C4C" stroke-width="2"/>
+            <circle cx="104" cy="65" r="7" fill="#87CEEB" stroke="#8B4C4C" stroke-width="2"/>
+            <circle cx="122" cy="65" r="7" fill="#87CEEB" stroke="#8B4C4C" stroke-width="2"/>
+            <circle cx="140" cy="65" r="7" fill="#87CEEB" stroke="#8B4C4C" stroke-width="2"/>
+            <circle cx="158" cy="65" r="7" fill="#87CEEB" stroke="#8B4C4C" stroke-width="2"/>
+            
+            <!-- HELLO KITTY text -->
+            <text x="110" y="85" font-family="Arial" font-size="12" fill="white" text-anchor="middle" font-weight="bold">HELLO KITTY</text>
+            
+            <!-- Top wing (blue) -->
+            <ellipse cx="100" cy="45" rx="45" ry="16" fill="#87CEEB" stroke="#8B4C4C" stroke-width="3"/>
+            
+            <!-- Bottom wing (blue) -->
+            <ellipse cx="110" cy="95" rx="38" ry="14" fill="#87CEEB" stroke="#8B4C4C" stroke-width="3"/>
+            
+            <!-- Tail -->
+            <path d="M 180 70 Q 200 55 205 65 Q 200 75 180 70" fill="#FF85C1" stroke="#8B4C4C" stroke-width="3"/>
+            
+            <!-- Wheels (dark) -->
+            <circle cx="80" cy="105" r="9" fill="#8B4C4C"/>
+            <circle cx="140" cy="105" r="9" fill="#8B4C4C"/>
+            
+            <!-- Propeller (spinning) -->
+            <g transform="translate(20, 70)">
+                <circle cx="0" cy="0" r="5" fill="#333"/>
+                <g>
+                    <ellipse cx="-15" cy="0" rx="15" ry="4" fill="#FFD700" stroke="#333" stroke-width="2">
+                        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.2s" repeatCount="indefinite"/>
+                    </ellipse>
+                    <ellipse cx="0" cy="-15" rx="4" ry="15" fill="#FFD700" stroke="#333" stroke-width="2">
+                        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.2s" repeatCount="indefinite"/>
+                    </ellipse>
+                </g>
+            </g>
+            
+            <!-- Hello Kitty character on top -->
+            <g transform="translate(130, 25)">
+                <!-- Head -->
+                <ellipse cx="0" cy="0" rx="22" ry="20" fill="white" stroke="#333" stroke-width="2.5"/>
+                
+                <!-- Left ear -->
+                <ellipse cx="-14" cy="-12" rx="8" ry="10" fill="white" stroke="#333" stroke-width="2.5"/>
+                
+                <!-- Right ear -->
+                <ellipse cx="14" cy="-12" rx="8" ry="10" fill="white" stroke="#333" stroke-width="2.5"/>
+                
+                <!-- Pink bow -->
+                <ellipse cx="16" cy="-14" rx="11" ry="7" fill="#FF69B4" stroke="#333" stroke-width="2"/>
+                <ellipse cx="16" cy="-14" rx="5" ry="3.5" fill="#FFB6D9" stroke="#333" stroke-width="1.5"/>
+                
+                <!-- Left eye -->
+                <circle cx="-7" cy="-3" r="3" fill="#333"/>
+                
+                <!-- Right eye -->
+                <circle cx="7" cy="-3" r="3" fill="#333"/>
+                
+                <!-- Nose -->
+                <ellipse cx="0" cy="4" rx="3.5" ry="3" fill="#FFD700"/>
+                
+                <!-- Left whiskers -->
+                <line x1="-22" y1="1" x2="-12" y2="0" stroke="#333" stroke-width="1.5"/>
+                <line x1="-22" y1="5" x2="-12" y2="4" stroke="#333" stroke-width="1.5"/>
+                
+                <!-- Right whiskers -->
+                <line x1="22" y1="1" x2="12" y2="0" stroke="#333" stroke-width="1.5"/>
+                <line x1="22" y1="5" x2="12" y2="4" stroke="#333" stroke-width="1.5"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- Loading Text -->
+    <div class="loading-text-container">
+        <div class="loading-text">Loading something special for Afrin</div>
+    </div>
+
+    <script>
+        // Alert after one cycle
+        setTimeout(() => {
+            alert('✈️ Perfect Animation!\n\n✅ Airplane উপরে দিয়ে যাচ্ছে\n✅ Text নিচে দিয়ে যাচ্ছে\n✅ দুইটা একসাথে বাম থেকে ডান দিকে!\n\nএটা ঠিক আছে?');
+        }, 5000);
+    </script>
+</body>
+</html>

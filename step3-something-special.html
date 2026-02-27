@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something Special ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #FFF5E4 0%, #FFE5D9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating petals */
+        .petal {
+            position: fixed;
+            width: 25px;
+            height: 35px;
+            background: rgba(255, 182, 193, 0.7);
+            border-radius: 50% 0 50% 0;
+            animation: float 8s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sun */
+        .sun {
+            position: fixed;
+            top: 50px;
+            left: 50px;
+            width: 90px;
+            height: 90px;
+            background: #F4D03F;
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(244, 208, 63, 0.6);
+            z-index: 2;
+        }
+
+        /* Container */
+        .container {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Top text */
+        .top-text {
+            font-family: 'Caveat', cursive;
+            font-size: 42px;
+            color: #E07A5F;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        /* Main title */
+        .main-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 68px;
+            font-weight: 700;
+            font-style: italic;
+            color: #D04E3C;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Card container */
+        .card-container {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFECB3 100%);
+            border: 6px solid #D4AF37;
+            border-radius: 35px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            position: relative;
+            margin: 0 auto;
+        }
+
+        /* Decorative hearts */
+        .deco-heart {
+            position: absolute;
+            font-size: 35px;
+            animation: heartFloat 3s ease-in-out infinite;
+        }
+
+        .deco-heart-1 {
+            top: 20px;
+            left: 20px;
+            animation-delay: 0s;
+        }
+
+        .deco-heart-2 {
+            top: 20px;
+            right: 20px;
+            animation-delay: 0.5s;
+        }
+
+        .deco-heart-3 {
+            bottom: 20px;
+            left: 20px;
+            animation-delay: 1s;
+        }
+
+        .deco-heart-4 {
+            bottom: 20px;
+            right: 20px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes heartFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.1);
+            }
+        }
+
+        /* Letter icon */
+        .letter-icon {
+            font-size: 120px;
+            margin-bottom: 40px;
+            animation: letterBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes letterBounce {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-15px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        /* Message text */
+        .message-text {
+            font-size: 26px;
+            color: #6B4423;
+            margin-bottom: 40px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* Click to open text */
+        .click-text {
+            font-size: 32px;
+            color: #6B4423;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        /* Button */
+        .open-button {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #8B4C39;
+            border: none;
+            padding: 24px 85px;
+            font-size: 36px;
+            font-weight: 700;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 12px 35px rgba(255, 165, 0, 0.5);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            border: 3px solid #FF8C00;
+        }
+
+        .open-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 45px rgba(255, 165, 0, 0.7);
+        }
+
+        .open-button:active {
+            transform: translateY(-2px);
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            font-size: 25px;
+            animation: sparkleAnim 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .sparkle-1 {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .sparkle-2 {
+            top: 15%;
+            right: 15%;
+            animation-delay: 0.5s;
+        }
+
+        .sparkle-3 {
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 1s;
+        }
+
+        .sparkle-4 {
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes sparkleAnim {
+            0%, 100% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sun {
+                width: 70px;
+                height: 70px;
+                top: 30px;
+                left: 30px;
+            }
+
+            .top-text {
+                font-size: 34px;
+            }
+
+            .main-title {
+                font-size: 54px;
+            }
+
+            .card-container {
+                padding: 45px 35px;
+            }
+
+            .letter-icon {
+                font-size: 100px;
+                margin-bottom: 30px;
+            }
+
+            .message-text {
+                font-size: 22px;
+            }
+
+            .click-text {
+                font-size: 28px;
+            }
+
+            .open-button {
+                font-size: 30px;
+                padding: 20px 70px;
+            }
+
+            .deco-heart {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sun {
+                width: 60px;
+                height: 60px;
+            }
+
+            .top-text {
+                font-size: 28px;
+            }
+
+            .main-title {
+                font-size: 44px;
+            }
+
+            .card-container {
+                padding: 40px 25px;
+            }
+
+            .letter-icon {
+                font-size: 80px;
+                margin-bottom: 25px;
+            }
+
+            .message-text {
+                font-size: 20px;
+            }
+
+            .click-text {
+                font-size: 24px;
+            }
+
+            .open-button {
+                font-size: 26px;
+                padding: 18px 60px;
+            }
+
+            .deco-heart {
+                font-size: 24px;
+            }
+
+            .sparkle {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating petals -->
+    <div id="petals"></div>
+
+    <!-- Sun -->
+    <div class="sun"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Sparkles -->
+        <div class="sparkle sparkle-1">✨</div>
+        <div class="sparkle sparkle-2">✨</div>
+        <div class="sparkle sparkle-3">✨</div>
+        <div class="sparkle sparkle-4">✨</div>
+
+        <!-- Top text -->
+        <div class="top-text">Straight from my heart</div>
+
+        <!-- Main title -->
+        <div class="main-title">Something Special ✨</div>
+
+        <!-- Card container -->
+        <div class="card-container">
+            <!-- Decorative hearts -->
+            <div class="deco-heart deco-heart-1">💖</div>
+            <div class="deco-heart deco-heart-2">💕</div>
+            <div class="deco-heart deco-heart-3">💝</div>
+            <div class="deco-heart deco-heart-4">💗</div>
+
+            <!-- Letter icon -->
+            <div class="letter-icon">💌</div>
+
+            <!-- Message -->
+            <div class="message-text">
+                I have something special to share with you...
+            </div>
+
+            <!-- Click to open text -->
+            <div class="click-text">Click to open</div>
+
+            <!-- Button -->
+            <button class="open-button" onclick="openLetter()">
+                Just For You 💌
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating petals
+        function createPetals() {
+            const container = document.getElementById('petals');
+            for (let i = 0; i < 20; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(petal);
+            }
+        }
+
+        createPetals();
+
+        // Open letter function
+        function openLetter() {
+            alert('💌 Opening letter!\n\nSTEP 4 coming soon!\n\nNext: Birthday message or cake cutting?');
+            // Navigate to next page
+        }
+    </script>
+</body>
+</html>
